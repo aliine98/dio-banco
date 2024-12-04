@@ -9,7 +9,7 @@ import java.math.BigDecimal;
 @Setter
 public abstract class Conta {
     private static int contador;
-    private static String agencia = "1";
+    protected String agencia;
     private int numero;
     private BigDecimal saldo = BigDecimal.valueOf(0.0);
     protected Cliente cliente;
@@ -36,8 +36,12 @@ public abstract class Conta {
     }
 
     public void transferir(BigDecimal valor, Conta destino) {
-        this.sacar(valor);
-        destino.depositar(valor);
+        if(this.agencia.equals(destino.agencia)) {
+            this.sacar(valor);
+            destino.depositar(valor);
+        } else {
+            throw new RuntimeException("Não é possível tranferir para conta de outro banco");
+        }
     }
 
     @Override

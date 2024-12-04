@@ -1,11 +1,12 @@
 package br.com.aline;
 
 import java.math.BigDecimal;
-import java.math.MathContext;
 
 public class ContaPoupanca extends Conta {
-    public ContaPoupanca(Cliente cliente) {
+    public ContaPoupanca(Cliente cliente, Banco banco) {
         this.cliente = cliente;
+        this.agencia = banco.getAgencia();
+        banco.adicionaConta(this);
     }
 
     @Override

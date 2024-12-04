@@ -10,7 +10,12 @@ import java.util.List;
 @Getter
 public class Banco {
     private String nome;
+    private String agencia;
     private List<Conta> contas = new ArrayList<>();
+
+    public Banco(String agencia) {
+        this.agencia = agencia;
+    }
 
     public void adicionaConta(Conta conta) {
         this.contas.add(conta);
